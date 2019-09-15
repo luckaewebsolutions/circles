@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Circles</title>
+  <link rel="stylesheet" href="includes/css/styles.css">
+  <!-- include paper.j library -->
+  <script src="includes/js/lib/paper-full.min.js" charset="utf-8"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.2/howler.min.js" charset="utf-8"></script>
+  <!-- include paperscript -->
+  <script type="text/paperscript" canvas="myCanvas">
+
+  var circles = [];
+
+  var keyData = {
+    a: {
+      color: "aliceblue",
+      sound: new Howl({
+        src: ['sounds/bubbles.mp3']
+      })
+    },
+    b: {
+      color: "antiquewhite",
+      sound: new Howl({
+        src: ['sounds/clay.mp3']
+      })
+    },
+    c: {
+      color: "aqua",
+      sound: new Howl({
+        src: ['sounds/confetti.mp3']
+      })
+    },
+    d: {
+      color: "aquamarine",
+      sound: new Howl({
+        src: ['sounds/corona.mp3']
+      })
+    },
+    e: {
+      color: "blueviolet",
+      sound: new Howl({
+        src: ['sounds/dotted-spiral.mp3']
+      })
+    },
+    f: {
+      color: "cadetblue",
+      sound: new Howl({
+        src: ['sounds/flash-1.mp3']
+      })
+    },
+    g: {
+      color: "chocolate",
+      sound: new Howl({
+        src: ['sounds/flash-2.mp3']
+      })
+    },
+    h: {
+      color: "darkkhaki",
+      sound: new Howl({
+        src: ['sounds/flash-3.mp3']
+      })
+    },
+    i: {
+      color: "darksalmon",
+      sound: new Howl({
+        src: ['sounds/glimmer.mp3']
+      })
+    },
+    j: {
+      color: "deepskyblue",
+      sound: new Howl({
+        src: ['sounds/moon.mp3']
+      })
+    },
+    k: {
+      color: "goldenrod",
+      sound: new Howl({
+        src: ['sounds/pinwheel.mp3']
+      })
+    },
+    l: {
+      color: "greenyellow",
+      sound: new Howl({
+        src: ['sounds/piston-1.mp3']
+      })
+    },
+    m: {
+      color: "khaki",
+      sound: new Howl({
+        src: ['sounds/piston-2.mp3']
+      })
+    },
+    n: {
+      color: "lightblue",
+      sound: new Howl({
+        src: ['sounds/piston-3.mp3']
+      })
+    },
+    o: {
+      color: "lightseagreen",
+      sound: new Howl({
+        src: ['sounds/prism-1.mp3']
+      })
+    },
+    p: {
+      color: "orchid",
+      sound: new Howl({
+        src: ['sounds/prism-2.mp3']
+      })
+    },
+    q: {
+      color: "palegreen",
+      sound: new Howl({
+        src: ['sounds/splits.mp3']
+      })
+    },
+    r: {
+      color: "pink",
+      sound: new Howl({
+        src: ['sounds/squiggle.mp3']
+      })
+    },
+    s: {
+      color: "powderblue",
+      sound: new Howl({
+        src: ['sounds/strike.mp3']
+      })
+    },
+    t: {
+      color: "slateblue",
+      sound: new Howl({
+        src: ['sounds/suspension.mp3']
+      })
+    },
+    u: {
+      color: "whitesmoke",
+      sound: new Howl({
+        src: ['sounds/timer.mp3']
+      })
+    },
+    v: {
+      color: "violet",
+      sound: new Howl({
+        src: ['sounds/ufo.mp3']
+      })
+    },
+    w: {
+      color: "yellowgreen",
+      sound: new Howl({
+        src: ['sounds/veil.mp3']
+      })
+    },
+    x: {
+      color: "rosybrown",
+      sound: new Howl({
+        src: ['sounds/wipe.mp3']
+      })
+    },
+    y: {
+      color: "lightcyan",
+      sound: new Howl({
+        src: ['sounds/zig-zag.mp3']
+      })
+    },
+    z: {
+      color: "lightgreen",
+      sound: new Howl({
+        src: ['sounds/prism-3.mp3']
+      })
+    }
+  }
+
+  function onKeyDown(event) {
+    if (keyData[event.key]){
+      var width = paper.view.size.width
+      var height = paper.view.size.height;
+      var myCircle = new Path.Circle(new Point(Math.floor(Math.random() * width), Math.floor(Math.random() * height)), 300 + Math.floor(Math.random() * 150));
+      myCircle.fillColor = keyData[event.key].color;
+      keyData[event.key].sound.play();
+      circles.push(myCircle);
+    }
+  }
+
+  function onFrame(event){
+    for (i=0;i<circles.length;i++){
+      circles[i].fillColor.hue += 1;
+      circles[i].scale(.9);
+    }
+  }
+
+
+  </script>
+</head>
+
+<body>
+  <canvas id="myCanvas" resize></canvas>
+
+  <script src="includes/js/circles.js" charset="utf-8"></script>
+</body>
+
+</html>
